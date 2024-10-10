@@ -133,7 +133,7 @@ const Table: React.FC = () => {
     try {
         setIsUpdating(true);
 
-        const response = await fetch(`http://localhost:5001/api/requests/${selectedRequest._id}`, {
+        const response = await fetch(`https://e-hospital-s03e.onrender.com/api/requests/${selectedRequest._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedRequest),
@@ -171,7 +171,7 @@ const Table: React.FC = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5001/api/requests/${selectedRequest._id}`, {
+        const response = await fetch(`https://e-hospital-s03e.onrender.com/api/requests/${selectedRequest._id}`, {
           method: 'DELETE',
         });
 
