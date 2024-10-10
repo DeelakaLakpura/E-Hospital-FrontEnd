@@ -37,7 +37,7 @@ const Table: React.FC = () => {
 
   const fetchRequests = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/capture');
+      const response = await fetch('https://e-hospital-s03e.onrender.com/api/capture');
       if (!response.ok) {
         throw new Error('Network response was not ok: ' + response.statusText);
       }
