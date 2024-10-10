@@ -6,9 +6,7 @@ import Table from './components/Table';
 import SearchFilter from './components/SearchFilter';
 
 function App() {
-  const handleDownload = () => {
-    console.log('Download initiated');
-  };
+  
 
   return (
     <div className="App">
