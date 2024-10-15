@@ -33,9 +33,11 @@ const Table: React.FC = () => {
   const [selectedRequest, setSelectedRequest] = useState<IRequest | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [loading, setLoading] = useState(true); // New loading state
 
 
   const fetchRequests = async () => {
+    setLoading(true); // Start loading
     try {
       const response = await fetch('https://e-hospital-s03e.onrender.com/api/capture');
       if (!response.ok) {
@@ -46,8 +48,11 @@ const Table: React.FC = () => {
     } catch (error) {
       console.error('Error fetching requests:', error);
       Swal.fire('Error', 'Failed to fetch requests', 'error');
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
+
 
   useEffect(() => {
     fetchRequests();
@@ -235,7 +240,13 @@ const Table: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {currentRequests.length > 0 ? (
+              {loading ? ( // Show loading state
+                  <tr>
+                    <td colSpan={11} className="px-6 py-4 text-center text-sm text-gray-500">
+                      Loading...
+                    </td>
+                  </tr>
+                ) : currentRequests.length > 0 ? (
                   currentRequests.map((request, index) => {
                     const dateValue = new Date(request.createdOn);
                     const formattedDate =
